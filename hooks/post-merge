@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Relink skills after a pull/merge so renamed or deleted skills are picked up.
+exec "$(git rev-parse --show-toplevel)/install.sh"
