@@ -82,4 +82,21 @@ Claude Code cloud sessions, routines, and Cowork don't read `~/.claude/skills`, 
 
 | Skill | Description |
 |---|---|
-| `grill-me` | Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree. |
+| `code-review` | Two-axis review (Standards and Spec) of the changes since a commit, branch, tag, or merge-base. |
+| `domain-modeling` | Build and sharpen a project's domain model: `development/GLOSSARY.md` and ADRs in `development/adr/`. |
+| `grilling` | Grill the user relentlessly about a plan, decision, or idea. |
+| `grill-with-docs` | Grilling plus domain-modeling: interview about a design and write the glossary and ADRs as you go. |
+| `implement` | Implement a piece of work based on a spec or set of tickets. |
+| `setup-matt-pocock-skills` | Configure a repo's issue tracker, triage labels, and domain doc layout (`development/agents/`). |
+| `to-spec` | Turn the current conversation into a spec and publish it to the issue tracker. |
+| `to-tickets` | Break a plan or spec into tracer-bullet tickets with blocking edges, published to the tracker. |
+
+### Per-repo configuration
+
+`to-spec`, `to-tickets`, `code-review`, and `domain-modeling` read configuration from the repo they run in:
+
+- `AGENTS.md` contains an `## Agent skills` block, and `CLAUDE.md` imports it with `@AGENTS.md`.
+- `development/agents/` holds `issue-tracker.md`, `triage-labels.md`, and `domain.md`.
+- The triage labels must exist on the repo's GitHub: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, and `wontfix`.
+
+To set up a new repo, run `/setup-matt-pocock-skills` in it.

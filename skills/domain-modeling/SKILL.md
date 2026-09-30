@@ -13,10 +13,12 @@ Repos have a single context:
 
 ```
 /
-├── GLOSSARY.md
+└── development/
+    ├── GLOSSARY.md
+    └── adr/
 ```
 
-Create files lazily: only when you have something to write. If no `GLOSSARY.md` exists, create one when the first term is resolved. If no `docs/adr/` exists, create it when the first ADR is needed.
+Create files lazily: only when you have something to write. If no `development/GLOSSARY.md` exists, create one when the first term is resolved. If no `development/adr/` exists, create it when the first ADR is needed.
 
 ## During the session
 
