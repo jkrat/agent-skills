@@ -1,5 +1,0 @@
-interface:
-  display_name: "Grill Me"
-  short_description: "Stress-test plans with sharp questions"
-policy:
-  allow_implicit_invocation: false
