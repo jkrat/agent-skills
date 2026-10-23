@@ -83,6 +83,7 @@ Claude Code cloud sessions, routines, and Cowork don't read `~/.claude/skills`, 
 | Skill | Description |
 |---|---|
 | `code-review` | Two-axis review (Standards and Spec) of the changes since a commit, branch, tag, or merge-base. |
+| `doc-creation` | Start and write an end-user Docusaurus page in `docs/`, with screenshots and on-screen labels. |
 | `domain-modeling` | Build and sharpen a project's domain model: `development/GLOSSARY.md` and ADRs in `development/adr/`. |
 | `grilling` | Grill the user relentlessly about a plan, decision, or idea. |
 | `grill-with-docs` | Grilling plus domain-modeling: interview about a design and write the glossary and ADRs as you go. |
@@ -93,10 +94,10 @@ Claude Code cloud sessions, routines, and Cowork don't read `~/.claude/skills`, 
 
 ### Per-repo configuration
 
-`to-spec`, `to-tickets`, `code-review`, and `domain-modeling` read configuration from the repo they run in:
+`to-spec`, `to-tickets`, `code-review`, `domain-modeling`, and `doc-creation` read configuration from the repo they run in:
 
 - `AGENTS.md` contains an `## Agent skills` block, and `CLAUDE.md` imports it with `@AGENTS.md`.
-- `development/agents/` holds `issue-tracker.md`, `triage-labels.md`, and `domain.md`.
+- `development/agents/` holds `issue-tracker.md`, `triage-labels.md`, and `domain.md`, plus `docs.md` (docs, image, and components folders) for repos that use `doc-creation`. If `docs.md` is missing, `doc-creation` asks for the paths and writes it.
 - The triage labels must exist on the repo's GitHub: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, and `wontfix`.
 
 To set up a new repo, run `/setup-matt-pocock-skills` in it.

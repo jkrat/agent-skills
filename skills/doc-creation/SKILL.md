@@ -3,7 +3,17 @@ name: doc-creation
 description: Start and write an end-user documentation page (Docusaurus markdown in docs/) with the standard metadata, title, description, updated date, and images. The user gives an opening summary, Claude asks clarifying questions about gaps, order, and image placement, then fills in the page. Use when the user wants to create or fill in a docs page.
 ---
 
-Help the user start or fill in a documentation page in `docs/`. Every page is written entirely for the end user, who is usually not technical. The user has usually already dropped screenshots into a matching folder under `docs/img/`.
+Help the user start or fill in a documentation page in the repo's docs folder. Every page is written entirely for the end user, who is usually not technical. The user has usually already dropped screenshots into a matching folder under the image folder.
+
+## Repo settings
+
+Read `development/agents/docs.md` before anything else (it is listed in the `## Agent skills` section of `AGENTS.md`). It gives:
+
+- **Docs folder:** where the pages live.
+- **Image folder:** where screenshots live, mirroring the docs folder.
+- **Components folder:** the Blazor components to check on-screen labels against.
+
+The rest of this skill calls these the docs folder, image folder, and components folder. If the file is missing, ask the user for the three paths, write `development/agents/docs.md` using the format in the Repo settings template below, and add a `### Docs` entry to the `## Agent skills` section of `AGENTS.md`. Then carry on.
 
 ## Page format
 
@@ -33,7 +43,7 @@ One-sentence tagline that matches the description.
 
 - **Page exists:** keep its front matter, title, heading anchor, and filename as they are. Only change `description` and the tagline, and only when they are placeholders or wrong.
 - **Page doesn't exist:** create it in the folder the user names, using the format above. Take the title from the user. Choose `sidebar_position` as the next free number among the sibling pages, and default `sidebar_label` to the title unless a shorter label makes sense. Write the description and tagline after the opening summary in step 2. Leave any `_category_.json` alone.
-- Find the image folder for the page. It mirrors the doc folder and is named after the page: `docs/img/<doc folder>/<page name>/`. If there is no exact match, use the closest folder and say which one you used.
+- Find the image folder for the page. It mirrors the doc folder and is named after the page: `<image folder>/<doc folder>/<page name>/`. If there is no exact match, use the closest folder and say which one you used.
 - List the images, then **open each one** so you know what it shows. Note any red boxes or highlights, since they mark the button or field to talk about.
 
 ### 2. Ask for the opening summary
@@ -42,7 +52,7 @@ Before writing anything, ask the user to describe the page in their own words: w
 
 ### 3. Verify against the app
 
-If the summary names buttons, fields, or screens, check the real labels in the screenshots and in the Blazor components under `Fixit/Components/`. Use the on-screen wording in the doc. Read any file the user points to for names, categories, and options.
+If the summary names buttons, fields, or screens, check the real labels in the screenshots and in the Blazor components under the components folder. Use the on-screen wording in the doc. Read any file the user points to for names, categories, and options.
 
 ### 4. Ask clarifying questions
 
@@ -58,7 +68,7 @@ Ask in one batch, not one at a time. Skip the questions if there's nothing to as
 ### 5. Write the page
 
 - Add sections with `##` headings and `{#kebab-case-anchor}` ids, matching the page's title heading.
-- Place images with relative paths, such as `![Short description](../img/<doc folder>/<page name>/file.png)`, right after the step they show.
+- Place images with paths relative to the page, such as `![Short description](../img/<doc folder>/<page name>/file.png)` when the image folder is `docs/img/`, right after the step they show.
 - Use `:::tip` or `:::note` for side notes and warnings.
 - Refer to buttons and fields by their on-screen label in **bold**.
 - Leave a stub, *description needed* in italics, for anything that needs business knowledge you don't have.
@@ -72,3 +82,15 @@ Keep it short. Say what you wrote, and list anywhere you used the on-screen labe
 ## Tone
 
 Plain and direct, written for someone who uses the application daily but is not technical. Use natural labels rather than field names, code terms, or backticks. Use short paragraphs and numbered steps for anything the reader does.
+
+## Repo settings template
+
+```markdown
+# Docs
+
+End-user documentation pages written by the `doc-creation` skill.
+
+- **Docs folder:** `docs/`
+- **Image folder:** `docs/img/`
+- **Components folder:** `MyApp/Components/`
+```
